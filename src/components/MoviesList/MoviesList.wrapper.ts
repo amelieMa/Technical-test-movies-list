@@ -17,7 +17,7 @@ export const MoviesListWrapper = styled.div`
     }
     @media (min-width: 768px) {
       margin: 5px;
-      flex: 1 1 30%;
+      flex: 1 1 23%;
     }
 
     @media (min-width: 955px) {

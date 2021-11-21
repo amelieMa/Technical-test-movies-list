@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { IMAGE_URL } from '../../app/App.constants';
 import { MovieWrapper } from './MoviesList.wrapper';
 
-
-const generateimageUrl = (image: string) => IMAGE_URL + image;
+export const generateimageUrl = (image: string) => IMAGE_URL + image;
 
 export const Movie = ({ movie }: any) => {
   const [isHover, setIsHover] = useState(false);

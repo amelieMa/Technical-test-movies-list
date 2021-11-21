@@ -3,6 +3,7 @@ import { range } from 'lodash-es';
 
 import { MoviesListWrapper } from './MoviesList.wrapper';
 import { Movie } from './Movie.component';
+import { Empty } from '../../ui/Empty/Empty.component';
 
 const GridSkeleton = () => (
   <div className="skeleton-grid-movies">
@@ -12,13 +13,15 @@ const GridSkeleton = () => (
   </div>
 )
 
+const searchIcon = <span className="material-icons" style={{ fontSize: '48px' }}>search</span>;
+
 export const MoviesListComponent = ({movies, loading}: any) => {
   if (loading) {
     return <GridSkeleton />
   }
 
   if (!movies) {
-    return <p>vide</p>;
+    return <Empty description={"Oups ! Aucun film trouvé."} image={searchIcon} />;
   }
 
   return (
