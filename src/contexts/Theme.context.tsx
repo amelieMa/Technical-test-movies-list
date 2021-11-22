@@ -5,7 +5,12 @@ export const ThemeContext = createContext({
   setTheme: () => {},
 })
 
-export const ThemeProvider = ({ children, localStorage }: any) => {
+interface ThemeProviderProps {
+  children: React.ReactNode,
+  localStorage: string,
+}
+
+export const ThemeProvider = ({ children, localStorage }: ThemeProviderProps) => {
   const [theme, setTheme] = useState(localStorage)
   const nextTheme = theme === 'light' ? 'dark' : 'light'
 

@@ -10,5 +10,12 @@ export interface Movie {
   release_date: string;
   title: string;
   video: boolean;
-  vote_average: string;
+  vote_average: number;
+}
+
+export interface MoviesState {
+  loading: boolean,
+  movie: Movie | null,
+  movies: Movie[] | null,
+  error: string | null
 }

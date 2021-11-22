@@ -7,7 +7,7 @@ import { SwitchTheme } from '../SwitchTheme/SwitchTheme.component';
 
 const { Header: HeaderAntd } = Layout;
 
-const BackToHome = () => (
+export const BackToHome = () => (
   <BackToHomeWrapper>
     <NavLink to={'/'}>
       <span className="material-icons">chevron_left</span>

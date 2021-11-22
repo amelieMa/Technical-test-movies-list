@@ -1,33 +1,27 @@
-import { Skeleton } from 'antd'
-import { range } from 'lodash-es';
-
 import { MoviesListWrapper } from './MoviesList.wrapper';
-import { Movie } from './Movie.component';
+import { GridSkeleton, SearchIcon } from './MoviesList.helpers';
+import { MovieItem } from '../MovieItem/MovieItem.component';
 import { Empty } from '../../ui/Empty/Empty.component';
+import { Movie } from '../../redux/movies/movies.types';
 
-const GridSkeleton = () => (
-  <div className="skeleton-grid-movies">
-    {range(20).map((_, index) => (
-      <Skeleton.Input key={`skeleton-grid-movies-${index}`} style={{ width: 100, height: 200, margin: 10 }} active={true} />
-    ))}
-  </div>
-)
+interface MoviesListProps {
+  movies: Movie[] | null,
+  loading: boolean
+}
 
-const searchIcon = <span className="material-icons" style={{ fontSize: '48px' }}>search</span>;
-
-export const MoviesListComponent = ({movies, loading}: any) => {
+export const MoviesListComponent = ({ movies, loading }: MoviesListProps) => {
   if (loading) {
     return <GridSkeleton />
   }
 
-  if (!movies) {
-    return <Empty description={"Oups ! Aucun film trouvé."} image={searchIcon} />;
+  if (!movies || movies.length === 0) {
+    return <Empty description={"Oups ! Aucun film trouvé."} image={SearchIcon} />;
   }
 
   return (
     <MoviesListWrapper>
-      {movies.map((movie: any) => (
-        <Movie movie={movie} key={movie.id} />
+      {movies.map((movie: Movie) => (
+        <MovieItem movie={movie} key={movie.id} />
       ))}
     </MoviesListWrapper>
   );

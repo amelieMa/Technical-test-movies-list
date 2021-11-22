@@ -12,17 +12,15 @@ const responsive = {
   xl: { span: 16, offset: 4 },
 }
 
-export const Layout = ({ children }: any) => {
-  return (
-    <LayoutWrapper>
-      <LayoutAntd>
-        <Header />
-          <Row>
-            <Col {...responsive}>
-              {children}
-            </Col>
-        </Row>
-      </LayoutAntd>
-    </LayoutWrapper>
-  );
-}
+export const Layout = ({ children }: { children: React.ReactNode }) => (
+  <LayoutWrapper data-testid="layout">
+    <LayoutAntd>
+      <Header />
+      <Row>
+        <Col {...responsive}>
+          {children}
+        </Col>
+      </Row>
+    </LayoutAntd>
+  </LayoutWrapper>
+);

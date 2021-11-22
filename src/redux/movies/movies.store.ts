@@ -1,34 +1,41 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { get } from 'lodash-es'
 
-import { fetchPopularMovies, fetchMovie } from './movies.thunk';
-import { Movie } from './movies.types';
+import { AppStoreState } from '../../app/AppStore';
+import { fetchPopularMovies, fetchMovie, fetchSearchMovies } from './movies.thunk';
+import { Movie, MoviesState } from './movies.types';
 
 export const initiatialMoviesStore = {
   movie: null,
   movies: null,
-  loading: false
+  loading: false,
+  error: null
 }
 
-export const getMovie = (state: any) => get(state, 'movie');
-export const getMovies = (state: any) => get(state, 'movies');
-export const getLoading = (state: any) => get(state, 'loading');
+export const getMovie = (state: MoviesState) => get(state, 'movie');
+export const getMovies = (state: MoviesState) => get(state, 'movies');
+export const getLoading = (state: MoviesState) => get(state, 'loading');
 
 export function useMoviesSelector(): Movie[] | null {
-  return useSelector((state: any) => getMovies(state.movies));
+  return useSelector((state: AppStoreState) => getMovies(state.movies));
 }
 
 export function useMoviesLoadingSelector(): boolean {
-  return useSelector((state: any) => getLoading(state.movies));
+  return useSelector((state: AppStoreState) => getLoading(state.movies));
 }
 
 export function useMovieSelector(): Movie | null {
-  return useSelector((state: any) => getMovie(state.movies));
+  return useSelector((state: AppStoreState) => getMovie(state.movies));
 }
 
-export function useFetchMovies(): () => void {
+export function useFetchPopularMovies(): () => void {
   const dispatch = useDispatch()
   return () => dispatch(fetchPopularMovies());
+}
+
+export function useFetchSearchMovies(): (query: string) => void {
+  const dispatch = useDispatch()
+  return (query: string) => dispatch(fetchSearchMovies(query));
 }
 
 export function useFetchMovie(): (id: string) => void {

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const SwitchThemeWrapper = styled.div`
-  position: fixed;
-  top: 15px;
+  position: absolute;
+  top: 18px;
   right: 0;
   display: flex;
   span {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const EmptyWrapper = styled.div`
-  color: var(--dsr-color-hover);
+  color: ${({ theme }) => theme.colorPage};
   .ant-empty {
     display: flex;
     align-items: center;

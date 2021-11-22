@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { BASE_URL } from '../../app/App.constants';
 import { MoviePageComponent } from './MoviePage.component';
-import { useMovieSelector, useMoviesLoadingSelector, useFetchMovie } from '../../redux/movies/movies.store';
+import { useMovieSelector, useFetchMovie } from '../../redux/movies/movies.store';
 
 export const ROUTE = `${BASE_URL}/movie/:id`;
 
@@ -11,7 +11,6 @@ export const MoviePage = () => {
   const { id } = useParams();
 
   const movie = useMovieSelector();
-  const loading = useMoviesLoadingSelector();
   const fetchMovie = useFetchMovie();
 
   useEffect(() => {
@@ -22,6 +21,6 @@ export const MoviePage = () => {
   }, [id])
 
   return (
-    <MoviePageComponent movie={movie} loading={loading}/>
+    <MoviePageComponent movie={movie}/>
   );
 }

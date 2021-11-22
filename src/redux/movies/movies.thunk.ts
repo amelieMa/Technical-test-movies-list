@@ -1,11 +1,14 @@
-import { fetchPopularMoviesURL, fetchMovieURL } from './movies.api';
+import { fetchPopularMoviesURL, fetchMovieURL, fetchSearchMoviesURL } from './movies.api';
 import {
   fetchPopularMoviesRequest, 
   fetchPopularMoviesSuccess, 
   fetchPopularMoviesFailure,
   fetchMovieRequest,
   fetchMovieSuccess,
-  fetchMovieFailure
+  fetchMovieFailure,
+  fetchSearchMoviesRequest,
+  fetchSearchMoviesSuccess,
+  fetchSearchMoviesFailure
 } from './movies.actions';
 
 export const fetchPopularMovies = () => (dispatch: (action: any) => void) => {
@@ -14,8 +17,8 @@ export const fetchPopularMovies = () => (dispatch: (action: any) => void) => {
   fetch(fetchPopularMoviesURL())
     .then(res => res.json())
     .then(res => {
-      if (res.error) {
-        throw res.error
+      if (res.status_message) {
+        throw res.status_message
       }
       return dispatch(fetchPopularMoviesSuccess(res.results))
     })
@@ -31,8 +34,8 @@ export const fetchMovie = (id: string) => (dispatch: (action: any) => void) => {
   fetch(fetchMovieURL(id))
     .then(res => res.json())
     .then(res => {
-      if (res.error) {
-        throw res.error
+      if (res.status_message) {
+        throw res.status_message
       }
       return dispatch(fetchMovieSuccess(res))
     })
@@ -41,3 +44,19 @@ export const fetchMovie = (id: string) => (dispatch: (action: any) => void) => {
     })
 }
 
+
+export const fetchSearchMovies = (query: string) => (dispatch: (action: any) => void) => {
+  dispatch(fetchSearchMoviesRequest())
+
+  fetch(fetchSearchMoviesURL(query))
+    .then(res => res.json())
+    .then(res => {
+      if (res.status_message) {
+        throw res.status_message
+      }
+      return dispatch(fetchSearchMoviesSuccess(res.results))
+    })
+    .catch(error => {
+      dispatch(fetchSearchMoviesFailure(error))
+    })
+}

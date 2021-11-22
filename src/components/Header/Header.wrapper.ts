@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.div`
     background-color: ${({ theme }) => theme.backgroundHeader};
 
     h1 {
+      font-size: 28px;
       color: ${({ theme }) => theme.colorHeader};
     }
   }

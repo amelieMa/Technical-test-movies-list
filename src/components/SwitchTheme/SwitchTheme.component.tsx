@@ -7,6 +7,7 @@ export const SwitchTheme = () => (
   <ThemeContext.Consumer>
     {({ theme, setTheme }) => {
       const checked = theme === 'light' ? false : true
+
       return (
         <SwitchThemeWrapper>
           <span className="material-icons">light_mode</span>
@@ -14,6 +15,7 @@ export const SwitchTheme = () => (
           <span className="material-icons">mode_night</span>
         </SwitchThemeWrapper>
       )
+      
     }}
   </ThemeContext.Consumer>
 )
