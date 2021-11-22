@@ -11,11 +11,10 @@ export const SwitchTheme = () => (
       return (
         <SwitchThemeWrapper>
           <span className="material-icons">light_mode</span>
-          <Switch defaultChecked onChange={setTheme} checked={checked} />
+          <Switch defaultChecked onChange={setTheme} checked={checked} size="small" />
           <span className="material-icons">mode_night</span>
         </SwitchThemeWrapper>
       )
-      
     }}
   </ThemeContext.Consumer>
 )
